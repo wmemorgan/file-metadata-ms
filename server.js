@@ -2,6 +2,7 @@
 const express = require('express'),
   multer = require('multer'),
   // upload = multer({ dest: 'uploads/'}),
+  maxSize = 200,
   storage = multer.diskStorage({
     destination: (req, file, callback) => {
       callback(null, 'uploads/')
@@ -11,7 +12,7 @@ const express = require('express'),
       callback(null, fileUpload)
     }
   }),
-  upload = multer({storage: storage}),
+  upload = multer({storage: storage, limits: { fileSize: 2000000 }}),
   port = process.env.PORT || 3000;
 
 const app = express();
