@@ -17,9 +17,10 @@ app.post('/uploads', upload.single('fileUpload'), async (req, res) => {
   const data = req.file;
   console.log(data);
   try {
-    console.log("File uploaded successfully")
-    res.send("File uploaded successfully")
-    // res.send({ filename: data.originalname, size: data.size});
+    // console.log("File uploaded successfully")
+    // res.send("File uploaded successfully")
+    console.log({ filename: data.originalname, size: data.size });
+    res.send({ filename: data.originalname, type: data.mimetype, size: data.size});
   } catch (err) {
     res.sendStatus(400);
   }
