@@ -1,13 +1,22 @@
 
 const express = require('express'),
   multer = require('multer'),
-  upload = multer({ dest: 'uploads/' }),
+  // upload = multer({ dest: 'uploads/'}),
+  storage = multer.diskStorage({
+    destination: (req, file, callback) => {
+      callback(null, 'uploads/')
+    },
+    filename: (req, file, callback) => {
+      let fileUpload = file.fieldname;
+      callback(null, fileUpload)
+    }
+  }),
+  upload = multer({storage: storage}),
   port = process.env.PORT || 3000;
 
 const app = express();
 
 app.use('/public', express.static(process.cwd() + '/public'));
-
 
 app.get('/', (req, res) => {
   res.sendFile(process.cwd() + '/views/index.html');
@@ -17,8 +26,6 @@ app.post('/uploads', upload.single('fileUpload'), async (req, res) => {
   const data = req.file;
   console.log(data);
   try {
-    // console.log("File uploaded successfully")
-    // res.send("File uploaded successfully")
     console.log({ filename: data.originalname, size: data.size });
     res.send({ filename: data.originalname, type: data.mimetype, size: data.size});
   } catch (err) {
