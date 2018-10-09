@@ -1,5 +1,7 @@
 # File Metadata Microservice
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/wmemorgan/file-metadata-ms.svg)](https://greenkeeper.io/)
+
 ### Purpose
 A microservice that reads the metadata of an uploaded file and returns the file size.
 
