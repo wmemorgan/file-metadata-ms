@@ -1,6 +1,6 @@
 {
   "name": "file-metadata-ms",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "File Metadata Microservice",
   "main": "index.js",
   "scripts": {
